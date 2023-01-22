@@ -1,0 +1,23 @@
+{
+  "name": "@ammc/commons",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "lint": "tsc --noEmit && eslint src"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-config": "^2.6.0",
+    "@ammc/eslint-settings": "workspace:*",
+    "@ammc/jest": "workspace:*",
+    "@ammc/typescript-settings": "workspace:*",
+    "@testing-library/dom": "^8.13.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^18.11.3",
+    "@types/testing-library__jest-dom": "^5.9.1",
+    "eslint": "^8.26.0",
+    "jest": "^28.1.2",
+    "react": "^18.1.0",
+    "typescript": "^4.8.4"
+  }
+}

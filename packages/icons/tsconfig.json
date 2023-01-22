@@ -1,0 +1,14 @@
+{
+  "extends": "./node_modules/@ammc/typescript-settings/profiles/default/tsconfig-base.json",
+  "compilerOptions": {
+    "types": [
+      "node",
+      "jest",
+      "@testing-library/jest-dom"
+    ],
+    "jsx": "preserve",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+  },
+  "exclude": ["node_modules"]
+}

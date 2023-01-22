@@ -1,0 +1,17 @@
+{
+  "incrementalBuildIgnoredGlobs": ["temp/**"],
+  "operationSettings": [
+    {
+      "operationName": "build",
+      "outputFolderNames": ["dist"]
+    },
+    {
+      "operationName": "test",
+      "disableBuildCacheForOperation": true
+    },
+    {
+      "operationName": "storybook",
+      "disableBuildCacheForOperation": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "extends": "./node_modules/@ammc/typescript-settings/profiles/default/tsconfig-base.json",
+  "compilerOptions": {
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "paths": {
+      "@ammc/components/*": [
+        "../../packages/components/src/*"
+      ],
+      "@ammc/components-base-web/*": [
+        "../../packages/components-base-web/src/*"
+      ],
+      "@ammc/components-base-app/*": [
+        "../../packages/components-base-app/src/*"
+      ],
+      "@ammc/video/*": ["../../packages/video/src/*"],
+      "@ammc/utilities/*": ["../../packages/utilities/src/*"],
+      "@ammc/commons/*": ["../../packages/commons/src/*"],
+      "@ammc/icons/*": ["../../packages/icons/src/*"]
+    },
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "exclude": ["node_modules", "**/node_modules"]
+}

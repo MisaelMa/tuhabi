@@ -1,0 +1,88 @@
+import { mdiHome, mdiNotebook } from '@mdi/js';
+
+import { RoutesApp } from '@ammc/components/src/components/mui/menu/route.interface';
+
+export const routes = (): RoutesApp[] => {
+  return [
+    {
+      id: 1,
+      isActive: 1,
+      name: 'Home',
+      fatherID: null,
+      open: false,
+      level: 1,
+      url: '/',
+      icon: mdiHome,
+      createdAt: '2019-09-14T23:23:16.000Z',
+      updatedAt: '2019-09-17T23:32:46.000Z',
+      children: [],
+    },
+    {
+      id: 3,
+      isActive: 1,
+      name: 'usuarios',
+      fatherID: null,
+      open: false,
+      level: 1,
+      url: '/users',
+      icon: mdiNotebook,
+      createdAt: '2019-09-14T23:23:16.000Z',
+      updatedAt: '2019-09-17T23:32:46.000Z',
+      children: [],
+    },
+    {
+      id: 4,
+      isActive: 1,
+      name: 'settings',
+      fatherID: null,
+      open: false,
+      level: 1,
+      url: '/settings',
+      icon: mdiNotebook,
+      createdAt: '2019-09-14T23:23:16.000Z',
+      updatedAt: '2019-09-17T23:32:46.000Z',
+      children: [
+        {
+          id: 5,
+          isActive: 1,
+          name: 'roles',
+          fatherID: null,
+          open: false,
+          level: 1,
+          url: '/rol',
+          icon: mdiNotebook,
+          createdAt: '2019-09-14T23:23:16.000Z',
+          updatedAt: '2019-09-17T23:32:46.000Z',
+          children: [
+            {
+              id: 9,
+              isActive: 1,
+              name: 'app',
+              fatherID: null,
+              open: false,
+              level: 1,
+              url: '/rol',
+              icon: mdiNotebook,
+              createdAt: '2019-09-14T23:23:16.000Z',
+              updatedAt: '2019-09-17T23:32:46.000Z',
+              children: [],
+            },
+          ],
+        },
+        {
+          id: 20,
+          isActive: 1,
+          name: 'liz',
+          fatherID: null,
+          open: false,
+          level: 1,
+          url: '/',
+          icon: mdiHome,
+          createdAt: '2019-09-14T23:23:16.000Z',
+          updatedAt: '2019-09-17T23:32:46.000Z',
+          children: [],
+        },
+      ],
+    },
+  ];
+};

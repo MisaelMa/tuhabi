@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/heft/heft.schema.json",
+  "heftPlugins": [
+    {
+      "plugin": "@rushstack/heft-storybook-plugin",
+      "options": {
+        "storykitPackageName": "@ammc/heft-storybook-web",
+        "startupModulePath": "@storybook/react/bin/index.js"
+      }
+    }
+  ]
+}
