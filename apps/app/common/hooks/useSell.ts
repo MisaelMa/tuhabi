@@ -113,6 +113,7 @@ export const useSell = () => {
     dialog,
     updateDialog,
     menu,
+    maxSteps,
     updateMenu,
   };
 };

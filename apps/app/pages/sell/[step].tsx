@@ -48,6 +48,9 @@ const SellPage = () => {
     pushShallowRoute(index);
   }, []);
 
+  const isNex = ()=> {
+    return matches ?  activeStep !== maxSteps - 1 : activeStep !== maxSteps - 2  
+  }
   return (
     <Box display="flex" justifyContent="center" alignItems="center">
       <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
@@ -82,22 +85,27 @@ const SellPage = () => {
         {activeStep !== null && (
           <MobileStepper
             variant="text"
-            steps={maxSteps}
+            steps={matches ? maxSteps: maxSteps-1}
             position="static"
             activeStep={activeStep}
             nextButton={
-              <Button
-                size="small"
-                onClick={handleNext}
-                disabled={activeStep === maxSteps}
-              >
-                {activeStep === maxSteps - 1 ? "Enviar" : "Next"}
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowLeft />
-                ) : (
-                  <KeyboardArrowRight />
-                )}
-              </Button>
+              
+              isNex() ? ( <Button
+                  size="small"
+                  onClick={()=> {
+                      handleNext()
+                    
+                  }}
+                  disabled={activeStep === maxSteps}
+                >
+                  {activeStep === maxSteps - 1 ? "Enviar" : "Next"}
+                  {theme.direction === "rtl" ? (
+                    <KeyboardArrowLeft />
+                  ) : (
+                    <KeyboardArrowRight />
+                  )}
+                </Button>): (<div></div>)
+              
             }
             backButton={
               <Button

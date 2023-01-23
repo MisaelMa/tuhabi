@@ -44,7 +44,7 @@ const drawerWidth = 340;
 
 const StepLayout: React.FC<PropsWithChildren> = (props) => {
   const theme = useTheme();
-  const {menu, updateMenu} = useSell()
+  const {menu, updateMenu, activeStep, maxSteps,pushShallowRoute} = useSell()
 
 
   const handleDrawerClose = () => {
@@ -54,8 +54,15 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
 
   useEffect(()=>{
     if(matches){
+     if ( activeStep !== maxSteps - 1 ){
       updateMenu(true);
+    
+     } else {
+     
+      updateMenu(false);
+     }
     } else {
+      pushShallowRoute(8)
       updateMenu(false);
     }
   },[matches])
