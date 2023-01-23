@@ -7,6 +7,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { SellContext } from "./context/sell.context";
 import { isEmpty } from "../../common/utils/store.window";
 import { steps } from "../config/sell.config";
+// @ts-ignore
 import { useContextualRouting } from "next-use-contextual-routing";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";

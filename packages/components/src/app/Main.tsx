@@ -1,5 +1,4 @@
 import { CSSObject, Theme, styled } from "@mui/material/styles";
-
 import { Box } from "@mui/material";
 
 /**
@@ -24,6 +23,7 @@ interface SwippeOpen {
   openLeft?: boolean;
   openRight?: boolean;
   drawerWidth?: number;
+  src?: string;
 }
 interface MainStyleProps extends SwippeOpen {
   theme: Theme;
@@ -38,6 +38,7 @@ interface MainStyleProps extends SwippeOpen {
  * @param prop.openLeft
  * @param prop.openRight
  * @param prop.drawerWidth
+ * @param prop.src
  */
 const MainStyle = ({
   theme,
@@ -45,7 +46,19 @@ const MainStyle = ({
   openLeft,
   openRight,
   drawerWidth = 240,
+  src,
 }: MainStyleProps): CSSObject => ({
+  ...(src && {
+    backgroundImage: `url(${src})`,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    width: "100%",
+    height: "auto",
+    top: 0,
+    left: 0,
+    minHeight: "100vh",
+  }),
   flexGrow: 1,
   padding: theme.spacing(3),
   transition: theme.transitions.create("margin", {
@@ -80,4 +93,6 @@ const MainStyle = ({
  *
  * @param prop
  */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const Main = styled("main")<SwippeOpen>((props) => MainStyle(props));
