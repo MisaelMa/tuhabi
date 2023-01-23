@@ -1,5 +1,6 @@
 import {
   Step1,
+  Step10,
   Step2,
   Step3,
   Step4,
@@ -63,5 +64,11 @@ export const steps = [
     label: "Ascensor",
     description: `show`,
     component: Step9,
+  },
+  {
+    path: "resumen",
+    label: "Resumen",
+    description: `resumen`,
+    component: Step10,
   },
 ];

@@ -34,6 +34,8 @@ export interface Sell {
 
 export type SellContextType = {
     state: Sell,
+    dialog: boolean,
+    updateDialog: (dialog: boolean)=>void
     activeStep: number
     setStep: (index: number)=>void
     update: (property: string,value: string | string[] | boolean | FileReader) => void;
@@ -44,6 +46,7 @@ export const SellContext = createContext<SellContextType>({} as SellContextType)
 export const SellProvider = ({ children }) => {
   const [state, setData] = useState(() => getLocalStorage("sell", initialState))
   const [activeStep, setActiveStep] = useState(0);
+  const [dialog, setDialog] = useState(false);
   const update = (property: string,value: string): void => {
     setData((prevState) =>{
         return {
@@ -60,8 +63,11 @@ export const SellProvider = ({ children }) => {
     setLocalStorage("sell", state);
   }, [state]);
 
+  const updateDialog = (value: boolean)=>{
+    setDialog(value)
+  }
   return (
-    <SellContext.Provider value={{ state, update, activeStep,setStep }}>
+    <SellContext.Provider value={{ state, update, activeStep,setStep, dialog, updateDialog }}>
       {children}
     </SellContext.Provider>
   );

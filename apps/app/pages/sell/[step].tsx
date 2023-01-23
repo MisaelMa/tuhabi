@@ -1,5 +1,14 @@
 import * as React from "react";
 
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  useMediaQuery,
+} from "@mui/material";
+
 import { Background } from "../../components/background";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -7,6 +16,7 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
+import Resumen from "../../components/Resument";
 import StepLayout from "../../components/layout/step.layout";
 import Typography from "@mui/material/Typography";
 import { steps } from "../../common/config/sell.config";
@@ -20,7 +30,15 @@ const Rend = ({ Com }) => {
 };
 const SellPage = () => {
   const theme = useTheme();
-  const { activeStep, handleBack, handleNext, pushShallowRoute } = useSell();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const {
+    activeStep,
+    handleBack,
+    handleNext,
+    pushShallowRoute,
+    dialog,
+    updateDialog,
+  } = useSell();
   const maxSteps = steps.length;
   const router = useRouter();
   const { step } = router.query;
@@ -98,6 +116,35 @@ const SellPage = () => {
           />
         )}
       </Box>
+      {
+        !matches && (      <Button
+          variant="contained"
+          color="primary"
+          onClick={() => updateDialog(true)}
+          sx={{ bottom: 0, position: "absolute" }}
+        >
+          Resumen
+        </Button>
+  )
+      }
+      <Dialog
+        open={dialog}
+        onClose={() => updateDialog(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Resumen
+        </DialogTitle>
+        <DialogContent>
+        <Resumen></Resumen>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => updateDialog(false)} autoFocus>
+            Cerrar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

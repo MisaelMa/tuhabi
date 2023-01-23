@@ -1,6 +1,6 @@
+import { BottomNavigation, BottomNavigationAction, Container, useMediaQuery } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
 import { CSSObject, Theme, styled, useTheme } from '@mui/material/styles';
-import { Container, useMediaQuery } from '@mui/material';
 import { RMain, RToolbar } from '@ammc/components/src';
 import React, { PropsWithChildren, useEffect } from 'react';
 
@@ -61,7 +61,14 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
       setOpen(false)  
     }
   },[matches])
-  // @ts-ignore
+
+  const [value, setValue] = React.useState('recents');
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
+  
   return (
     <SellProvider>
 
@@ -112,6 +119,7 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
       <RMain open={open} src="https://fondosmil.com/fondo/60032.jpg"  openRight={true} sx={{  flexGrow: 1,p: 3 }} drawerWidth={drawerWidth}>
         <DrawerHeader />
         <Container maxWidth="xl">{props.children}</Container>
+
       </RMain>
     </Box>
     </SellProvider>

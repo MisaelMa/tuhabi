@@ -39,6 +39,7 @@ const Step5 = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+      <FormLabel component="legend">Amenidades</FormLabel>
         <FormGroup>
           {amenidate.map((item, i) => (
             <FormControlLabel
@@ -55,7 +56,6 @@ const Step5 = () => {
             />
           ))}
         </FormGroup>
-        <FormHelperText>Be careful</FormHelperText>
       </FormControl>
     </Box>
   );
