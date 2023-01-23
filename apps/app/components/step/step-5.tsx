@@ -12,10 +12,9 @@ import {
 import error from "next/error";
 import { useSell } from "../../common/hooks/useSell";
 import { useState } from "react";
-import { userForm } from "../../common/hooks/useForm";
 
 const Step5 = () => {
-  const { formik,  } = userForm();
+  const { formik,  } = useSell();
   const { update } = useSell();
   const amenidate = ["Zona BBQ", "salón comunal", "parque de juegos"];
   const handleChange = (e) => {

@@ -14,11 +14,10 @@ const initialState :Sell= {
     address:'',
     floorNumber: '',
     amenidades:[],
-    hasParking: false,
     isDeck: false,
     price: 0,
     picture: '',
-    hasLift: false
+    //hasLift: false
 }
 export interface Sell {
     username: string;
@@ -26,22 +25,25 @@ export interface Sell {
     address: string;
     floorNumber: string;
     amenidades: string[]
-    hasParking: boolean
-    isDeck: boolean,
+    hasParking?: boolean
+    isDeck?: boolean,
     price: number
     picture: File | any,
-    hasLift: boolean
+    hasLift?: boolean
 }
 
 export type SellContextType = {
     state: Sell,
+    activeStep: number
+    setStep: (index: number)=>void
     update: (property: string,value: string | string[] | boolean | FileReader) => void;
   };
   
-export const SellContext = createContext<SellContextType>({state:initialState,update: (p: string,v: string): void=>{}});
+export const SellContext = createContext<SellContextType>({} as SellContextType);
 
 export const SellProvider = ({ children }) => {
   const [state, setData] = useState(() => getLocalStorage("sell", initialState))
+  const [activeStep, setActiveStep] = useState(0);
   const update = (property: string,value: string): void => {
     setData((prevState) =>{
         return {
@@ -51,12 +53,15 @@ export const SellProvider = ({ children }) => {
     })
   };
   
+  const setStep = (index: number)=>{
+    setActiveStep((prevActiveStep) => index);
+  }
   useEffect(() => {
     setLocalStorage("sell", state);
   }, [state]);
 
   return (
-    <SellContext.Provider value={{ state, update }}>
+    <SellContext.Provider value={{ state, update, activeStep,setStep }}>
       {children}
     </SellContext.Provider>
   );

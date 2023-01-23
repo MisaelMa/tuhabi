@@ -1,9 +1,9 @@
 import { TextField } from "@mui/material";
 import { useEffect } from "react";
-import { userForm } from "../../common/hooks/useForm";
+import { useSell } from "../../common/hooks/useSell";
 
 const Step2 = () => {
-  const { formik, onChange } = userForm();
+  const { formik, onChange } = useSell();
 
   return (
     <div>

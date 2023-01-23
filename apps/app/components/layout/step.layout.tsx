@@ -22,11 +22,11 @@ import MuiDrawer from '@mui/material/Drawer';
 import { SellProvider } from '../../common/hooks/context/sell.context';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import dynamic from 'next/dynamic';
+const Information = dynamic(() => import('../Information'), {
+  loading: () => <div>Loading...</div>,
+})
 
-export interface CustomerLayoutProps extends LayoutsProps<AppRoles.Customer> {
-  BoxMainProps?: BoxProps;
-  showToolbarSpace?: boolean;
-}
 interface AppBarProps {
   open?: boolean;
 }
@@ -71,7 +71,7 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
     >
       <CssBaseline />
       <RToolbar position="fixed"  style={{ background: 'white', color:'black', boxShadow: 'none', border:'none'}} elevation={0}>
-        prueba
+        Venta
       </RToolbar>
       <MuiDrawer
         sx={{
@@ -86,7 +86,7 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
         variant="persistent"
         open={open}
       >
-        <DrawerHeader>
+        <DrawerHeader style={{minHeight:48}}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? (
               <ChevronRightIcon />
@@ -96,8 +96,10 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
           </IconButton>
         </DrawerHeader>
         <Divider />
+        <Information/>
       </MuiDrawer>
-      <RMain open={open} openRight={true} sx={{  flexGrow: 1,p: 3 }} drawerWidth={drawerWidth}>
+      
+      <RMain open={open} src="https://fondosmil.com/fondo/60032.jpg"  openRight={true} sx={{  flexGrow: 1,p: 3 }} drawerWidth={drawerWidth}>
         <DrawerHeader />
         <Container maxWidth="xl">{props.children}</Container>
       </RMain>

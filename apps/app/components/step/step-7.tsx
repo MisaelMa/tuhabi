@@ -3,7 +3,7 @@ import {InputAttributes, NumericFormat, NumericFormatProps} from 'react-number-f
 import React from 'react';
 import { TextField } from "@mui/material";
 import { type } from 'os';
-import { userForm } from "../../common/hooks/useForm";
+import { useSell } from "../../common/hooks/useSell";
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -36,7 +36,7 @@ NumericFormatProps<InputAttributes>,
   );
 });
 const Step7 = () => {
-  const { formik,onChange } = userForm();
+  const { formik,onChange } = useSell();
   return (
     <div>
       <TextField
@@ -54,7 +54,7 @@ const Step7 = () => {
           inputComponent: NumberFormatCustom as any,
         }}
         error={Boolean(formik.errors.price)}
-        helperText={formik.touched.price && formik.errors.price}
+        helperText={Boolean(formik.errors.price) && formik.errors.price}
       />
     </div>
   );

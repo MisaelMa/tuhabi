@@ -1,11 +1,9 @@
 import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, TextField } from "@mui/material";
 
 import { useSell } from "../../common/hooks/useSell";
-import { userForm } from "../../common/hooks/useForm";
 
 const Step9 = () => {
-  const { formik, onChange } = userForm();
-  const { update } = useSell();
+  const { formik, onChange ,update} = useSell();
   const handleChange = (e) => {
     const { checked, name } = e.target;
     formik.handleChange(e);
@@ -14,7 +12,7 @@ const Step9 = () => {
   };
   return (
     <Box sx={{ display: "flex" }}>
-      <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+      <FormControl sx={{ m: 3 }}  error={Boolean(formik.errors.hasLift)} component="fieldset" variant="standard">
         <FormGroup>
           
             <FormControlLabel
@@ -29,6 +27,9 @@ const Step9 = () => {
               label={'¿Tiene ascensor?'}
             />
         </FormGroup>
+        {Boolean(formik.errors.hasLift) && (
+          <FormHelperText>{formik.errors.hasLift}</FormHelperText>
+        )}
       </FormControl>
     </Box>
   );

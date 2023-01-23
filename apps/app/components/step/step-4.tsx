@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
-import { userForm } from "../../common/hooks/useForm";
+import { useSell } from "../../common/hooks/useSell";
 
 const Step4 = () => {
-  const { formik,onChange } = userForm();
+  const { formik,onChange } = useSell();
   return (
     <div>
       <TextField
@@ -12,11 +12,12 @@ const Step4 = () => {
         fullWidth
         id="floorNumber"
         label="Numero de piso"
+        type="number"
         autoFocus
         value={formik.values.floorNumber}
         onChange={onChange}
         error={Boolean(formik.errors.floorNumber)}
-        helperText={formik.touched.floorNumber && formik.errors.floorNumber}
+        helperText={Boolean(formik.errors.floorNumber) && formik.errors.floorNumber}
       />
     </div>
   );

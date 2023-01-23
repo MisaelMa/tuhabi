@@ -6,114 +6,26 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
-import Step1 from "../../components/step/step-1";
-import Step2 from "../../components/step/step-2";
-import Step3 from "../../components/step/step-3";
-import Step4 from "../../components/step/step-4";
-import Step5 from "../../components/step/step-5";
-import Step6 from "../../components/step/step-6";
-import Step7 from "../../components/step/step-7";
-import Step8 from "../../components/step/step-8";
-import Step9 from "../../components/step/step-9";
 import StepLayout from "../../components/layout/step.layout";
 import Typography from "@mui/material/Typography";
-import { isEmpty } from "../../common/utils/store.window";
-import { useContextualRouting } from "next-use-contextual-routing";
+import { steps } from "../../common/config/sell.config";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useSell } from "../../common/hooks/useSell";
 import { useTheme } from "@mui/material/styles";
-import { userForm } from "../../common/hooks/useForm";
-
-const steps = [
-  {
-    path: "datos",
-    label: "Select campaign settings",
-    description: `datos.`,
-    component: Step1,
-  },
-  {
-    path: "contacto",
-    label: "Create an ad group",
-    description: "contacto",
-    component: Step2,
-  },
-  {
-    path: "direccion",
-    label: "Create an ad",
-    description: `direccion`,
-    component: Step3,
-  },
-  {
-    path: "datos-apartamento",
-    label: "Create an ad",
-    description: `datos-apartamento`,
-    component: Step4,
-  },
-  {
-    path: "amenidades",
-    label: "Create an ad",
-    description: `amenidades`,
-    component: Step5,
-  },
-  {
-    path: "parqueadero",
-    label: "Create an ad",
-    description: `fotos`,
-    component: Step6,
-  },
-  {
-    path: "precio",
-    label: "precio",
-    description: `precio`,
-    component: Step7,
-  },
-  {
-    path: "imagen",
-    label: "Create an ad",
-    description: `ascensor`,
-    component: Step8,
-  },
-  {
-    path: "ascensor",
-    label: "Create an ad",
-    description: `show`,
-    component: Step9,
-  },
-];
+import { Background } from "../../components/background";
 
 const Rend = ({ Com }) => {
   return <Com></Com>;
 };
 const SellPage = () => {
   const theme = useTheme();
-  const { formik } = userForm();
-  const [activeStep, setActiveStep] = React.useState(null);
+  const { activeStep, handleBack, handleNext, pushShallowRoute } = useSell();
   const maxSteps = steps.length;
   const router = useRouter();
   const { step } = router.query;
-  const { makeContextualHref, returnHref } = useContextualRouting();
-  const handleNext = async () => {
-    formik.submitForm();
-    if (isEmpty(formik.errors)) {
-      const index = activeStep + 1;
-      pushShallowRoute(index);
-    }
-  };
-
-  const handleBack = () => {
-    const index = activeStep - 1;
-    pushShallowRoute(index);
-  };
-
-  const pushShallowRoute = (index: number) => {
-    setActiveStep((prevActiveStep) => index);
-    router.push(makeContextualHref(), `${steps[index].path}`, {
-      shallow: true,
-    });
-  };
 
   useEffect(() => {
-    const { step } = router.query as { step: string };
     const index = steps.findIndex((item) => item.path === step);
     pushShallowRoute(index);
   }, []);
@@ -133,7 +45,7 @@ const SellPage = () => {
           }}
         >
           <Typography>
-            {activeStep !== null && steps[activeStep].label}
+             {activeStep !== null && steps[activeStep].label}
           </Typography>
         </Paper>
         <Box sx={{ height: 455, maxWidth: 600, width: "100%", p: 2 }}>
@@ -149,9 +61,9 @@ const SellPage = () => {
               <Button
                 size="small"
                 onClick={handleNext}
-                disabled={activeStep === maxSteps - 1}
+                disabled={activeStep === maxSteps}
               >
-                Next
+                {activeStep === maxSteps-1 ? 'Enviar': 'Next'}
                 {theme.direction === "rtl" ? (
                   <KeyboardArrowLeft />
                 ) : (

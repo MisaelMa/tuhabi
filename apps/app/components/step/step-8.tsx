@@ -3,20 +3,18 @@ import { useEffect, useState } from "react";
 
 import { getFile } from "../../common/utils/store.window";
 import { useSell } from "../../common/hooks/useSell";
-import { userForm } from "../../common/hooks/useForm";
 
 const Step8 = () => {
-  const { formik,  } = userForm();
-  const { update } = useSell();
+  const { formik, update } = useSell();
   const [src, setSrc] = useState('')
   const [selectedImage, setSelectedImage] = useState<File>();
 
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
-      var file = e.target.files[0];
-      var reader = new FileReader()
+      let file = e.target.files[0];
+      let reader = new FileReader()
       reader.onload = function(fileLoadedEvent) {
-        var srcData = fileLoadedEvent.target.result as string; 
+        let srcData = fileLoadedEvent.target.result as string; 
         formik.setFieldValue('picture',srcData)
         update('picture',srcData)
       }
@@ -30,8 +28,6 @@ const Step8 = () => {
   useEffect(()=>{
     if (formik.values.picture){
       const file = getFile(formik.values.picture)
-      console.log(file);
-      
       setSelectedImage(file);
     }
   },[])
