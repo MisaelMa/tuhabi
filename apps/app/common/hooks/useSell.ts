@@ -29,6 +29,7 @@ const validateStep = {
   3: ["floorNumber"],
   5: ["hasParking", "isDeck"],
   6: ["price"],
+  8: ["hasLift"],
 };
 export const useSell = () => {
   const {

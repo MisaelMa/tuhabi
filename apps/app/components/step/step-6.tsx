@@ -20,10 +20,13 @@ const Step6 = () => {
     update(name, checked);
   };
   return (
-    <Box sx={{ display: "flex",flexDirection: 'column'  }}>
-      <FormControl sx={{ m: 3 }} 
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <FormControl
+        sx={{ m: 3 }}
         error={Boolean(formik.errors.hasParking)}
-      component="fieldset" variant="standard">
+        component="fieldset"
+        variant="standard"
+      >
         <FormLabel component="legend">¿Tiene parqueadero?</FormLabel>
         <FormGroup>
           <FormControlLabel
@@ -31,12 +34,17 @@ const Step6 = () => {
               <Checkbox
                 id="hasParking"
                 name="hasParking"
-                checked={formik.values.hasOwnProperty('hasParking') ? formik.values.hasParking ?  true : false : false }
-                onClick={(e)=>{
+                checked={
+                  formik.values.hasOwnProperty("hasParking")
+                    ? formik.values.hasParking
+                      ? true
+                      : false
+                    : false
+                }
+                onClick={(e) => {
                   handleChange(e);
                   formik.setFieldValue("isDeck", false);
                   update("isDeck", false);
-                
                 }}
               />
             }
@@ -49,14 +57,23 @@ const Step6 = () => {
               <Checkbox
                 id="hasParking"
                 name="hasParking"
-                checked={formik.values.hasOwnProperty('hasParking') ? !formik.values.hasParking ?  true: false : false }
-                onClick={(e)=>{
-                  const value = formik.values.hasOwnProperty('hasParking') ? !formik.values.hasParking ?  true: false : false
+                checked={
+                  formik.values.hasOwnProperty("hasParking")
+                    ? !formik.values.hasParking
+                      ? true
+                      : false
+                    : false
+                }
+                onClick={(e) => {
+                  const value = formik.values.hasOwnProperty("hasParking")
+                    ? !formik.values.hasParking
+                      ? true
+                      : false
+                    : false;
                   formik.setFieldValue("hasParking", value);
                   update("hasParking", value);
                   formik.setFieldValue("isDeck", false);
                   update("isDeck", false);
-                
                 }}
               />
             }
@@ -84,8 +101,8 @@ const Step6 = () => {
             />
           </FormGroup>
           {formik.errors.isDeck && (
-          <FormHelperText>{formik.errors.isDeck}</FormHelperText>
-        )}
+            <FormHelperText>{formik.errors.isDeck}</FormHelperText>
+          )}
         </FormControl>
       )}
     </Box>

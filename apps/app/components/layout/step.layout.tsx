@@ -53,17 +53,18 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   useEffect(()=>{
-    if(matches){
+    if(!matches){
      if ( activeStep !== maxSteps - 1 ){
-      updateMenu(true);
+
+    
+      updateMenu(false);
     
      } else {
-     
+      pushShallowRoute(8)
       updateMenu(false);
      }
     } else {
-      pushShallowRoute(8)
-      updateMenu(false);
+      updateMenu(true);
     }
   },[matches])
 

@@ -11,7 +11,7 @@ const Step1 = () => {
         required
         fullWidth
         id="username"
-        label="username"
+        label="Nombre completo"
         autoFocus
         value={formik.values.username}
         onChange={onChange}
