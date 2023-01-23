@@ -31,8 +31,16 @@ const validateStep = {
   6: ["price"],
 };
 export const useSell = () => {
-  const { update, state, activeStep, setStep, dialog, updateDialog } =
-    useContext(SellContext);
+  const {
+    update,
+    state,
+    menu,
+    updateMenu,
+    activeStep,
+    setStep,
+    dialog,
+    updateDialog,
+  } = useContext(SellContext);
   const router = useRouter();
   const { makeContextualHref, returnHref } = useContextualRouting();
   const maxSteps = steps.length;
@@ -44,8 +52,11 @@ export const useSell = () => {
     initialValues: state,
     validationSchema: SignupSchema,
     onSubmit: (values) => {
-      updateDialog(true);
-      //alert(JSON.stringify(values, null, 2));
+      if (activeStep === maxSteps - 1) {
+        updateMenu(false);
+        //updateDialog(true);
+        //alert(JSON.stringify(values, null, 2));
+      }
     },
   });
 
@@ -101,5 +112,7 @@ export const useSell = () => {
     handleNext,
     dialog,
     updateDialog,
+    menu,
+    updateMenu,
   };
 };

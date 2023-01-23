@@ -23,6 +23,7 @@ import { SellProvider } from '../../common/hooks/context/sell.context';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import dynamic from 'next/dynamic';
+import { useSell } from '../../common/hooks/useSell';
 
 const Information = dynamic(() => import('../Information'), {
   loading: () => <div>Loading...</div>,
@@ -43,22 +44,19 @@ const drawerWidth = 340;
 
 const StepLayout: React.FC<PropsWithChildren> = (props) => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const {menu, updateMenu} = useSell()
 
-  const handleDrawerOpen = () => {
-    setOpen(!open);
-  };
 
   const handleDrawerClose = () => {
-    setOpen(!open);
+    updateMenu(!menu);
   };
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   useEffect(()=>{
     if(matches){
-      setOpen(true)
+      updateMenu(true);
     } else {
-      setOpen(false)  
+      updateMenu(false);
     }
   },[matches])
 
@@ -70,7 +68,7 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
 
   
   return (
-    <SellProvider>
+    
 
     <Box
       sx={{
@@ -101,7 +99,7 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
         }}
         anchor="right"
         variant="persistent"
-        open={open}
+        open={menu}
       >
         <DrawerHeader style={{minHeight:48}}>
           <IconButton onClick={handleDrawerClose}>
@@ -116,13 +114,12 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
         <Information/>
       </MuiDrawer>
       
-      <RMain open={open} src="https://fondosmil.com/fondo/60032.jpg"  openRight={true} sx={{  flexGrow: 1,p: 3 }} drawerWidth={drawerWidth}>
+      <RMain open={menu} src="https://fondosmil.com/fondo/60032.jpg"  openRight={true} sx={{  flexGrow: 1,p: 3 }} drawerWidth={drawerWidth}>
         <DrawerHeader />
         <Container maxWidth="xl">{props.children}</Container>
 
       </RMain>
     </Box>
-    </SellProvider>
    
   );
 };
