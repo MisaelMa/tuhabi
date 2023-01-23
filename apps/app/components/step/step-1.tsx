@@ -16,7 +16,7 @@ const Step1 = () => {
         value={formik.values.username}
         onChange={onChange}
         error={Boolean(formik.errors.username)}
-        helperText={Boolean(formik.errors.username) && formik.errors.username}
+        helperText={Boolean(formik.touched.username) && formik.errors.username}
       />
     </div>
   );

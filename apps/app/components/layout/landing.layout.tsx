@@ -1,11 +1,11 @@
 import { Avatar, Card, CardContent, CardMedia, useTheme } from "@mui/material";
 import Box, { BoxProps } from "@mui/material/Box";
+import Button, { ButtonProps } from '@mui/material/Button';
 import { CSSObject, styled } from "@mui/material/styles";
 import React, { PropsWithChildren, useState } from "react";
 import { Theme, useMediaQuery } from "@mui/material";
 
 import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
@@ -16,6 +16,7 @@ import Popover from "@mui/material/Popover";
 import RToolbar from "@ammc/components/src/app/RToolBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { red } from '@mui/material/colors';
 
 const drawerWidth = 240;
 
@@ -43,6 +44,13 @@ function Item(props: BoxProps) {
   );
 }
 
+const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
+  color: theme.palette.getContrastText(red[500]),
+  backgroundColor: red[500],
+  '&:hover': {
+    backgroundColor: red[700],
+  },
+}));
 function Copyright(props: any) {
   return (
     <Typography
@@ -60,6 +68,7 @@ function Copyright(props: any) {
     </Typography>
   );
 }
+
 
 const LandingLayout: React.FC<PropsWithChildren> = (props) => {
   const theme = useTheme();
@@ -111,13 +120,25 @@ const LandingLayout: React.FC<PropsWithChildren> = (props) => {
         flexDirection: "column",
         minHeight: "100vh",
       }}
-      
     >
       <CssBaseline />
-      <RToolbar position="fixed"  style={{ background: 'white', color:'black', boxShadow: 'none', border:'none'}} elevation={0}>
-        prueba
+      <RToolbar
+        position="fixed"
+        style={{
+          background: "white",
+          color: "black",
+          boxShadow: "none",
+          border: "none",
+        }}
+        elevation={0}
+      >
+        Tuhabi
+        <Box sx={{ flexGrow: 1 }} />
+        <ColorButton variant="contained" href="/sell/datos" sx={{ my: 1, mx: 1.5, }}>
+          Vender
+        </ColorButton>
       </RToolbar>
-      <DrawerHeader/>
+      <DrawerHeader />
       <Container>{props.children}</Container>
       <Box
         component="footer"

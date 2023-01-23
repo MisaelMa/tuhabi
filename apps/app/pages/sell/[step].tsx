@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { Background } from "../../components/background";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
@@ -13,7 +14,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSell } from "../../common/hooks/useSell";
 import { useTheme } from "@mui/material/styles";
-import { Background } from "../../components/background";
 
 const Rend = ({ Com }) => {
   return <Com></Com>;
@@ -45,10 +45,20 @@ const SellPage = () => {
           }}
         >
           <Typography>
-             {activeStep !== null && steps[activeStep].label}
+            {activeStep !== null && steps[activeStep].label}
           </Typography>
         </Paper>
-        <Box sx={{ height: 455, maxWidth: 600, width: "100%", p: 2 }}>
+        <Box
+          sx={{
+            height: 455,
+            maxWidth: 600,
+            width: "100%",
+            p: 2,
+            backdropFilter: "blur(3px)",
+            backgroundColor: "rgba(255,255,255,0.5)",
+            color: "white",
+          }}
+        >
           {activeStep !== null && <Rend Com={steps[activeStep].component} />}
         </Box>
         {activeStep !== null && (
@@ -63,7 +73,7 @@ const SellPage = () => {
                 onClick={handleNext}
                 disabled={activeStep === maxSteps}
               >
-                {activeStep === maxSteps-1 ? 'Enviar': 'Next'}
+                {activeStep === maxSteps - 1 ? "Enviar" : "Next"}
                 {theme.direction === "rtl" ? (
                   <KeyboardArrowLeft />
                 ) : (

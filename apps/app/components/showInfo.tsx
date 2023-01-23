@@ -1,8 +1,9 @@
-import { Sell } from "../common/hooks/context/sell.context";
+import { useEffect, useState } from "react";
+
 import { Interface } from "readline";
-import { useSell } from "../common/hooks/useSell";
-import { useState, useEffect } from "react";
+import { Sell } from "../common/hooks/context/sell.context";
 import { getFile } from "../common/utils/store.window";
+import { useSell } from "../common/hooks/useSell";
 
 interface PropsData {
   data: Sell;
@@ -19,17 +20,26 @@ const Email = (props: PropsData) => {
 };
 const Address = (props: PropsData) => {
   const { data } = props;
-  return <div>nombre: {data.username}</div>;
+  return <div>direccion: {data.address}</div>;
 };
 
 const Apartament = (props: PropsData) => {
   const { data } = props;
-  return <div>Piso: {data.floorNumber}</div>;
+  return <div>Planta: {data.floorNumber}</div>;
 };
 
 const Amenidades = (props: PropsData) => {
   const { data } = props;
-  return <div>Piso: {data.floorNumber}</div>;
+  return (
+    <div>
+      Incluye:
+      <ul>
+        {data.amenidades.map((item, i) => (
+          <li key={i}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 const Parking = (props: PropsData) => {
@@ -62,7 +72,6 @@ const Imagen = (props: PropsData) => {
   };
 
   useEffect(() => {
- 
     if (data.picture) {
       const file = getFile(data.picture);
       setSelectedImage(file);
@@ -80,7 +89,10 @@ const Imagen = (props: PropsData) => {
 
 const Ascensor = (props: PropsData) => {
   const { data } = props;
-  return <div></div>;
+  return <div>
+    <div> {`${data.hasLift ? "Si" : "No"} `} tiene elevador</div>
+
+  </div>;
 };
 
 const ShowInfo = (props) => {

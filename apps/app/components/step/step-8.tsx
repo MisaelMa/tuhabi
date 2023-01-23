@@ -42,7 +42,7 @@ const Step8 = () => {
 
        {selectedImage && (<img style={{width:200}} src={URL.createObjectURL(selectedImage)}/>)}
       <Button variant="contained" component="label">
-        Upload File
+        Subir Foto
         <input type="file" accept="image/*;capture=camera" hidden  onChange={imageChange}/>
       </Button>
       </Box>

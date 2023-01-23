@@ -12,10 +12,7 @@ const Index = () => {
     <Background src="https://fondosmil.com/fondo/60032.jpg"  display="flex"
     justifyContent="center"
     alignItems="center">
-      
-        <Button variant="contained" sx={{ height: 40, backgroundColor: '#E0E3E7', color:'black' }}>
-          Vender
-        </Button>
+  
    
     </Background>
   );

@@ -2,7 +2,7 @@ import Box, { BoxProps } from '@mui/material/Box';
 import { CSSObject, Theme, styled, useTheme } from '@mui/material/styles';
 import { Container, useMediaQuery } from '@mui/material';
 import { RMain, RToolbar } from '@ammc/components/src';
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect } from 'react';
 
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -23,6 +23,7 @@ import { SellProvider } from '../../common/hooks/context/sell.context';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import dynamic from 'next/dynamic';
+
 const Information = dynamic(() => import('../Information'), {
   loading: () => <div>Loading...</div>,
 })
@@ -51,7 +52,15 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
   const handleDrawerClose = () => {
     setOpen(!open);
   };
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
 
+  useEffect(()=>{
+    if(matches){
+      setOpen(true)
+    } else {
+      setOpen(false)  
+    }
+  },[matches])
   // @ts-ignore
   return (
     <SellProvider>
@@ -71,7 +80,8 @@ const StepLayout: React.FC<PropsWithChildren> = (props) => {
     >
       <CssBaseline />
       <RToolbar position="fixed"  style={{ background: 'white', color:'black', boxShadow: 'none', border:'none'}} elevation={0}>
-        Venta
+        Tuhabi
+        <Box sx={{ flexGrow: 1 }} />
       </RToolbar>
       <MuiDrawer
         sx={{
